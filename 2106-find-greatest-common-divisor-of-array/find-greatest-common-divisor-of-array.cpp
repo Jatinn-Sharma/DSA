@@ -7,11 +7,8 @@ int ans(int a,int b){
 }
 public:
     int findGCD(vector<int>& nums) {
-        int mn=INT_MAX,mx=INT_MIN;
-        for(int i=0;i<nums.size();i++){
-            mn=min(nums[i],mn);
-            mx=max(nums[i],mx);
-        }
+        int mn = *min_element(nums.begin(), nums.end());
+        int mx = *max_element(nums.begin(), nums.end());
         return ans(mn,mx);
     }
 };
