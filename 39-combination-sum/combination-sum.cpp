@@ -1,27 +1,23 @@
 class Solution {
-    void cs(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int idx,int target){
-        if(idx==nums.size() || target<0){
+    void res(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int target,int idx){
+        if(target<0 || idx==nums.size()){
             return;
         }
         if(target==0){
-            if(s.find(temp)==s.end()){
-                 ans.push_back(temp);
-                 s.insert(temp);
-            }
+            ans.push_back(temp);
             return;
         }
         temp.push_back(nums[idx]);
-        cs(nums,temp,ans,idx+1,target-nums[idx]);
-        cs(nums,temp,ans,idx,target-nums[idx]);
+        //res(nums,temp,ans,target-nums[idx],idx+1);
+        res(nums,temp,ans,target-nums[idx],idx);
         temp.pop_back();
-        cs(nums,temp,ans,idx+1,target);
+        res(nums,temp,ans,target,idx+1);
     }
 public:
-    set<vector<int>> s;
     vector<vector<int>> combinationSum(vector<int>& nums, int target) {
-        vector<int> temp;
+        vector<int>temp;
         vector<vector<int>>ans;
-        cs(nums,temp,ans,0,target);
+        res(nums,temp,ans,target,0);
         return ans;
     }
 };
