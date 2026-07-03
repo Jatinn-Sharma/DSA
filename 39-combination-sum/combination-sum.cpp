@@ -1,14 +1,13 @@
 class Solution {
     void res(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int target,int idx){
-        if(target<0 || idx==nums.size()){
-            return;
-        }
         if(target==0){
             ans.push_back(temp);
             return;
         }
+        if(target<0 || idx==nums.size()){
+            return;
+        }
         temp.push_back(nums[idx]);
-        //res(nums,temp,ans,target-nums[idx],idx+1);
         res(nums,temp,ans,target-nums[idx],idx);
         temp.pop_back();
         res(nums,temp,ans,target,idx+1);
