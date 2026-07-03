@@ -1,24 +1,27 @@
 class Solution {
-    void helper(vector<int>& candidates, int target, vector<int>& temp, int idx, vector<vector<int>>& res) {
-        if (target == 0) {
-            res.push_back(temp); // found a valid combination
+    void cs(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int idx,int target){
+        if(idx==nums.size() || target<0){
             return;
         }
-        if (target < 0) return; // overshoot
-
-        for (int i = idx; i < candidates.size(); i++) {
-            temp.push_back(candidates[i]);
-            // allow reuse of the same element, so pass i (not i+1)
-            helper(candidates, target - candidates[i], temp, i, res);
-            temp.pop_back();
+        if(target==0){
+            if(s.find(temp)==s.end()){
+                 ans.push_back(temp);
+                 s.insert(temp);
+            }
+            return;
         }
+        temp.push_back(nums[idx]);
+        cs(nums,temp,ans,idx+1,target-nums[idx]);
+        cs(nums,temp,ans,idx,target-nums[idx]);
+        temp.pop_back();
+        cs(nums,temp,ans,idx+1,target);
     }
-
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>> res;
+    set<vector<int>> s;
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
         vector<int> temp;
-        helper(candidates, target, temp, 0, res);
-        return res;
+        vector<vector<int>>ans;
+        cs(nums,temp,ans,0,target);
+        return ans;
     }
 };
