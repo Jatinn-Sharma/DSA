@@ -4,9 +4,9 @@ public:
         long long sq=0;
         for(int i=1;i<=nums.size();i++){
             if(nums.size()%i==0){
-                sq+=(nums[i-1]*nums[i-1]);
+                sq+=(1LL*nums[i-1]*nums[i-1]);
             }
         }
-        return sq;
+        return int(sq);
     }
 };
