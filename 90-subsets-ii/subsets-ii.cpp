@@ -1,23 +1,23 @@
 class Solution {
-    void uss(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int idx){
-        if(idx==nums.size()){
+    void ss(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int i,int n){
+        if(i==n){
             ans.push_back(temp);
             return;
         }
-        temp.push_back(nums[idx]);
-        uss(nums,temp,ans,idx+1);
+        temp.push_back(nums[i]);
+        ss(nums,temp,ans,i+1,nums.size());
         temp.pop_back();
-        while(idx<nums.size()-1 && nums[idx]==nums[idx+1]){
-            idx++;
+        while(i<n-1 && nums[i]==nums[i+1]){
+            i++;
         }
-        uss(nums,temp,ans,idx+1);
+        ss(nums,temp,ans,i+1,n);
     }
 public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
         vector<int> temp;
-        vector<vector<int>> ans;
-        uss(nums,temp,ans,0);
+        vector<vector<int>>ans;
+        ss(nums,temp,ans,0,nums.size());
         return ans;
     }
 };
