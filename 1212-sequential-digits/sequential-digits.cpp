@@ -1,18 +1,17 @@
 class Solution {
 public:
     vector<int> sequentialDigits(int low, int high) {
-        vector<int> ans;
-        string digits = "123456789";
-        // Generate sequential numbers of different lengths
-        for (int len = 2; len <= 9; len++) {
-            for (int start = 0; start + len <= 9; start++) {
-                int num = stoi(digits.substr(start, len));
-                if (num >= low && num <= high) {
+        vector<int>ans;
+        string Digits="123456789";
+        for(int len=2;len<=9;len++){
+            for(int st=0;st+len<=9;st++){
+                int num=stoi(Digits.substr(st,len));
+                if(num>=low && num<=high){
                     ans.push_back(num);
                 }
             }
         }
-        sort(ans.begin(), ans.end()); // Ensure ascending order
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
