@@ -1,18 +1,19 @@
 class Solution {
-public:
-    void ss(vector<int>& nums,vector<int>& temp,int idx,vector<vector<int>>&ans){
-        if(idx==nums.size()){
+    void ss(vector<int>&nums,vector<int>&temp,int i,vector<vector<int>>&ans){
+        if(i==nums.size()){
             ans.push_back(temp);
             return;
         }
-        temp.push_back(nums[idx]);
-        ss(nums,temp,idx+1,ans);
+        temp.push_back(nums[i]);
+        ss(nums,temp,i+1,ans);
+
         temp.pop_back();
-        ss(nums,temp,idx+1,ans);
+        ss(nums,temp,i+1,ans);
     }
+public:
     vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>temp;
         vector<vector<int>>ans;
-        vector<int> temp;
         ss(nums,temp,0,ans);
         return ans;
     }
