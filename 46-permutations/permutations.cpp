@@ -9,6 +9,7 @@ public:
     void nop(vector<int>&nums,vector<vector<int>>&ans,int idx,int n){
         if(idx==n-1){
             ans.push_back(nums);
+            return;
         }
         for(int i=idx;i<n;i++){
             swap(nums[i],nums[idx]);
